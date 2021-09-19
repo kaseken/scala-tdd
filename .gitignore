@@ -1,0 +1,10 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
+# IntelliJ #
+/.idea
+
+# sbt #
+target
