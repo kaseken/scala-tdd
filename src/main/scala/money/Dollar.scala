@@ -1,11 +1,5 @@
 package money
 
-class Dollar(val amount: Int) {
-  def times(multiplier: Int): Dollar = {
-    new Dollar(amount * multiplier)
-  }
-
-   def equals(that: Dollar): Boolean = {
-    this.amount == that.amount
-  }
+class Dollar(amount: Int) extends Money(amount) {
+  def *(multiplier: Int) = new Dollar(amount * multiplier)
 }
