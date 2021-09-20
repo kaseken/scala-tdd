@@ -2,24 +2,29 @@ package money
 
 import org.scalatest.funsuite.AnyFunSuite
 
-
 class MoneySuite extends AnyFunSuite {
   test("test Dollar multiplication") {
-    val five = new Dollar(5)
-    assert(five * 2 == new Dollar(10))
-    assert(five * 3 == new Dollar(15))
+    val five = Money.dollar(5)
+    assert(five * 2 == Money.dollar(10))
+    assert(five * 3 == Money.dollar(15))
   }
 
   test("equality") {
-    assert(new Dollar(5) == new Dollar(5))
-    assert(!(new Dollar(5) == new Dollar(6)))
-    assert(new Franc(5) == new Franc(5))
-    assert(!(new Franc(5) == new Franc(6)))
+    assert(Money.dollar(5) == Money.dollar(5))
+    assert(!(Money.dollar(5) == Money.dollar(6)))
+    assert(Money.franc(5) == Money.franc(5))
+    assert(!(Money.franc(5) == Money.franc(6)))
+    assert(!(Money.dollar(5) == Money.franc(5)))
   }
 
   test("test Franc multiplication") {
-    val five = new Franc(5)
-    assert(five * 2 == new Franc(10))
-    assert(five * 3 == new Franc(15))
+    val five = Money.franc(5)
+    assert(five * 2 == Money.franc(10))
+    assert(five * 3 == Money.franc(15))
+  }
+
+  test("currency") {
+    assert(Money.dollar(1).currency == "USD")
+    assert(Money.franc(1).currency == "CHF")
   }
 }

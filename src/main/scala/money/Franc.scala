@@ -1,5 +1,5 @@
 package money
 
-class Franc(amount: Int) extends Money(amount) {
-  def *(multiplier: Int) = new Franc(amount * multiplier)
+class Franc(amount: Int, currency: String) extends Money(amount, currency) {
+  def *(multiplier: Int): Money = Money.franc(amount * multiplier)
 }
