@@ -52,7 +52,7 @@ class MoneySuite extends AnyFunSuite {
     val bank = new Bank()
     bank.addRate("CHF", "USD", 2)
     val result = bank.reduce(Money.franc(2), "USD")
-    assert(result == Money.dollar(1) )
+    assert(result == Money.dollar(1))
   }
 
   test("identical rate") {
@@ -66,5 +66,25 @@ class MoneySuite extends AnyFunSuite {
     bank.addRate("CHF", "USD", 2)
     val result = bank.reduce(fiveBucks + tenFrancs, "USD")
     assert(result == Money.dollar(10))
+  }
+
+  test("sum plus money") {
+    val fiveBucks = Money.dollar(5)
+    val tenFrancs = Money.franc(10)
+    val bank = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val sum = new Sum(fiveBucks, tenFrancs) + fiveBucks
+    val result = bank.reduce(sum, "USD")
+    assert(result == Money.dollar(15))
+  }
+
+  test("sum times") {
+    val fiveBucks = Money.dollar(5)
+    val tenFrancs = Money.franc(10)
+    val bank = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val sum = new Sum(fiveBucks, tenFrancs) * 2
+    val result = bank.reduce(sum, "USD")
+    assert(result == Money.dollar(20))
   }
 }
